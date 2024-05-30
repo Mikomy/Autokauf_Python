@@ -1,5 +1,5 @@
 class Config:
-    RESOURCE_PATH = 'resources/'
-    AUTO_DATA_FILE = RESOURCE_PATH + 'autoData.csv'
-    KOSTEN_FILE = RESOURCE_PATH + 'jahrlicheKosten.csv'
-    WERTVERLUST_FILE = RESOURCE_PATH + 'wertverlust.csv'
+ 
+    AUTO_DATA_FILE = 'resources/autoData.csv'
+    KOSTEN_FILE = 'resources/jahrlicheKosten.csv'
+    WERTVERLUST_FILE =  'resources/wertverlust.csv'

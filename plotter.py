@@ -7,7 +7,7 @@ class Plotter:
         self.wertverlust_im_jahr_df = wertverlust_im_jahr_df
     
     def plot_wertverlust_prozent(self):
-        plt.figure(figsize=(10, 6))
+        plt.figure(figsize=(12, 8))
         plt.plot(self.wertverlust_im_jahr_df.index, self.wertverlust_im_jahr_df['procent'] * 100, marker='o')
         plt.title('Wertverlust/amortisation über die Jahre')
         plt.xlabel('Jahre')
@@ -51,7 +51,7 @@ class Plotter:
 
     def plot_kreisdiagramme(self):
         self.auto_kosten_df = self.auto_kosten_df.drop('Prius_1.8_Hybrid', errors='ignore')
-        fig, axes = plt.subplots(nrows=2, ncols=3, figsize=(18, 10))
+        fig, axes = plt.subplots(nrows=2, ncols=3, figsize=(12, 8))
         for i, (index, row) in enumerate(self.auto_kosten_df.iterrows()):
             ax = axes[i // 3, i % 3]
             labels = ['Nova', 'Versicherung jährlich', 'Werkstattkosten jährlich', 'Zusatz Spritkosten', 'Wertverlust pro Jahr']

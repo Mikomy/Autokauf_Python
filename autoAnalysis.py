@@ -1,11 +1,12 @@
 from data_loader import DataLoader
 from calculations import Calculations
 from plotter import Plotter
+import config
 import pandas as pd
 
 class AutoAnalysis:
-    def __init__(self, auto_data_file, kosten_file, wertverlust_file):
-        self.data_loader = DataLoader(auto_data_file, kosten_file, wertverlust_file)
+    def __init__(self):
+        self.data_loader = DataLoader(config.Config.AUTO_DATA_FILE, config.Config.KOSTEN_FILE, config.Config.WERTVERLUST_FILE)
         self.data_loader.load_data()
         self.calculations = Calculations(self.data_loader.auto_data_df, self.data_loader.auto_kosten_df, self.data_loader.wertverlust_im_jahr_df)
         self.plotter = Plotter(self.calculations.auto_kosten_df, self.data_loader.wertverlust_im_jahr_df)
@@ -42,5 +43,5 @@ class AutoAnalysis:
 
 # Nutzung der Klassen
 if __name__ == '__main__':
-    analysis = AutoAnalysis('autoData.csv', 'jahrlicheKosten.csv', 'wertverlust.csv')
+    analysis = AutoAnalysis()
     analysis.run_analysis()
