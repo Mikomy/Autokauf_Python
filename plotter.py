@@ -52,11 +52,21 @@ class Plotter:
     def plot_kreisdiagramme(self):
         self.auto_kosten_df = self.auto_kosten_df.drop('Prius_1.8_Hybrid', errors='ignore')
         fig, axes = plt.subplots(nrows=2, ncols=3, figsize=(12, 8))
+
+        def absolute_value(val, sizes):
+            a = int(val/100.*sum(sizes))
+            return f'€{a}'
+
         for i, (index, row) in enumerate(self.auto_kosten_df.iterrows()):
             ax = axes[i // 3, i % 3]
-            labels = ['Nova', 'Versicherung jährlich', 'Werkstattkosten jährlich', 'Zusatz Spritkosten', 'Wertverlust pro Jahr']
-            sizes = [row['Nova'], row['Versicherung_jahrlich'], row['WerkstattkostenJahrlich'], row['ZusatzSpritkostenNachElektro'], row['Wertverlust_pro_Jahr']]
-            ax.pie(sizes, labels=labels, autopct='%1.1f%%', startangle=140, textprops={'fontsize': 8})
+            labels = ['Nova', 'Versicherung jährlich', 'Werkstattkosten jährlich', 'Zusatz Spritkosten', 'Wertverlust pro Jahr', 'Bleibt als Urlaubsgeld']
+            total_kosten = row['Nova']/5 + row['Versicherung_jahrlich'] + row['WerkstattkostenJahrlich'] + row['ZusatzSpritkostenNachElektro'] + row['Wertverlust_pro_Jahr']
+            if total_kosten < 6000:
+                urlaubsgeld = 6000 - total_kosten
+            else:
+                urlaubsgeld = 0
+            sizes = [row['Nova']/5, row['Versicherung_jahrlich'], row['WerkstattkostenJahrlich'], row['ZusatzSpritkostenNachElektro'], row['Wertverlust_pro_Jahr'], urlaubsgeld]
+            ax.pie(sizes, labels=labels, autopct=lambda p: absolute_value(p, sizes), startangle=140, textprops={'fontsize': 8})
             ax.set_title(f"{index}\nJährliche Kosten von 5 bis 10 Alter: €{row['JahrlicheKosten5bis10Alter']:.2f}")
 
         plt.suptitle('Kostenverteilung der Autos im 5. Jahr und Total Kosten auf 1 Jahre', fontsize=16)

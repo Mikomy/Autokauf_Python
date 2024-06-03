@@ -23,8 +23,9 @@ class Calculations:
         self.auto_kosten_df['ZusatzlicheKostenaufwand'] = self.auto_kosten_df['TotalKosten1Jahre'] - zweit_guenstigster_preis
         
         self.auto_kosten_df['Wertverlust_pro_Jahr'] = round(self.auto_kosten_df.apply(self.berechne_wertverlust_nach_fuenf_jahren, axis=1), 1)
-        self.auto_kosten_df['JahrlicheKosten5bis10Alter'] = round(self.auto_kosten_df['Wertverlust_pro_Jahr'] + self.auto_kosten_df['ZusatzSpritkosten'] + self.auto_kosten_df['Nova'] + self.auto_kosten_df['WerkstattkostenJahrlich'], 1)
+        self.auto_kosten_df['JahrlicheKosten5bis10Alter'] = round(self.auto_kosten_df['Wertverlust_pro_Jahr'] + self.auto_kosten_df['ZusatzSpritkostenNachElektro'] + self.auto_kosten_df['Nova']/5 + self.auto_kosten_df['WerkstattkostenJahrlich'] + self.auto_kosten_df['Versicherung_jahrlich'],  1)
 
+# Bestimme den zweitgünstigsten Preis
         zweit_guenstigster_preis = self.auto_kosten_df['JahrlicheKosten5bis10Alter'].nsmallest(1).iloc[-1]
         self.auto_kosten_df['ZusatzlicheKosten'] = self.auto_kosten_df['JahrlicheKosten5bis10Alter'] - zweit_guenstigster_preis
 
