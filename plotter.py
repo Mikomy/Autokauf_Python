@@ -1,6 +1,8 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
+# Start --> autoAnalysis.py
+
 class Plotter:
     def __init__(self, auto_kosten_df, wertverlust_im_jahr_df):
         self.auto_kosten_df = auto_kosten_df

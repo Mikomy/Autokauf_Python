@@ -4,6 +4,13 @@ from plotter import Plotter
 import config
 import pandas as pd
 
+# @Author Miklos Komlosy
+# version 01.01
+
+# Der Programm führt eine Analyse der jährlichen Kosten und Wertverluste von Autos durch und stellt die Ergebnisse grafisch dar.
+
+
+
 class AutoAnalysis:
     def __init__(self):
         self.data_loader = DataLoader(config.Config.AUTO_DATA_FILE, config.Config.KOSTEN_FILE, config.Config.WERTVERLUST_FILE)

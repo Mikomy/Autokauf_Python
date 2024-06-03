@@ -1,5 +1,8 @@
 import datetime
 
+# Start --> autoAnalysis.py
+
+
 class Calculations:
     def __init__(self, auto_data_df, auto_kosten_df, wertverlust_im_jahr_df):
         self.auto_data_df = auto_data_df

@@ -1,6 +1,8 @@
 import pandas as pd
 from config import Config
 
+# Start --> autoAnalysis.py
+
 class DataLoader:
 
     def __init__(self, auto_data_file='autoData.csv', kosten_file='jahrlicheKosten.csv', wertverlust_file='wertverlust.csv'):
